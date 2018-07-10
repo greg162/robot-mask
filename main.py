@@ -11,6 +11,12 @@ DEADZONE_LIMIT    = 0.25
 SCREEN_MIDPOINT_X = SCREEN_WIDTH / 2
 SCREEN_MIDPOINT_Y = SCREEN_HEIGHT / 2
 SCREEN_THIRD_X    = int(230)
+APP_DIRECTORY     = "home/greg/face"
+BUTTONS_TO_EYES   = {
+  1: "ball.gif",
+  2: "blue_eye.png",
+  3: "green_eye.png"
+}
 
 
 class Eye:
@@ -111,11 +117,11 @@ print("Number of buttons: {}".format(buttons) )
 
 size   = width, height = SCREEN_WIDTH, SCREEN_HEIGHT
 black  = 0, 0, 0
-screen = pygame.display.set_mode(size)
+screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
 
 #Initiate the left and right eye
-leftEye  = Eye("/home/greg/face/ball.gif", True)
-rightEye = Eye("/home/greg/face/ball.gif", False)
+leftEye  = Eye("eyes/"+ BUTTONS_TO_EYES[1], True)
+rightEye = Eye("eyes/"+ BUTTONS_TO_EYES[1], False)
 
 #The game loop!
 while 1:
@@ -124,6 +130,12 @@ while 1:
   if exitButton == 1:
     sys.exit()
     os.system('reboot')
+
+  for button in BUTTONS_TO_EYES:
+    buttonPress = joystick.get_button( button )
+    if buttonPress == 1:
+      leftEye  = Eye("eyes/"+ BUTTONS_TO_EYES[button], True)
+      rightEye = Eye("eyes/"+ BUTTONS_TO_EYES[button], False)
 
 
   #If the quit event has been triggered, exit the game
