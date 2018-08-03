@@ -1,4 +1,4 @@
-import sys, pygame, os, game
+import sys, pygame, os, game, led
 import screenobjects
 
 
@@ -7,6 +7,9 @@ pygame.joystick.init()
 
 game = game.Settings()
 
+#Initiate the LED
+led  = led.Led()
+led.setColor(game.COLORS_TO_EYES[1])
 
 # Used to manage how fast the screen updates
 clock     = pygame.time.Clock()
@@ -48,6 +51,7 @@ while 1:
 
   exitButton = joystick.get_button( 8 )
   if exitButton == 1:
+    led.stop()
     sys.exit()
     os.system('reboot')
 
@@ -56,6 +60,7 @@ while 1:
     if buttonPress == 1:
       leftEye  = screenobjects.Eye("eyes/"+ game.BUTTONS_TO_EYES[button], True, game)
       rightEye = screenobjects.Eye("eyes/"+ game.BUTTONS_TO_EYES[button], False, game)
+      led.setColor(game.COLORS_TO_EYES[button])
 
 
   #If the quit event has been triggered, exit the game

@@ -15,3 +15,9 @@ class Settings:
       2: "blue_eye.png",
       3: "green_eye.png"
     }
+    self.COLORS_TO_EYES   = {
+      1: 0xFFFFFF,
+      2: 0x0000FF,
+      3: 0x00FF00
+    }
+
