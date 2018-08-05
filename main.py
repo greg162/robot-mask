@@ -1,6 +1,6 @@
 import sys, pygame, os, game, led
 import screenobjects
-
+from gravsensor.adxl345 import adxl345
 
 pygame.init()
 pygame.joystick.init()
@@ -20,7 +20,11 @@ joystick_count = pygame.joystick.get_count()
 print("Number of joysticks: {}".format(joystick_count))
 
 
-#Check the joystick is plugged in and initute it
+#Setup the accelorometer
+accel = adxl345()
+
+
+#Check the joystick is plugged in and initiate it
 try:
   pygame.joystick.Joystick(0)
 except NameError:
@@ -68,6 +72,10 @@ while 1:
     if event.type == pygame.QUIT: sys.exit()
 
   #Update the location of the left and right eye
+  accel.get_Gxyz()
+  leftEye.eyeAngle  = accel.z
+  rightEye.eyeAngle = accel.z
+
   leftEye.updateLocation(joystick, game)
   rightEye.updateLocation(joystick, game)
 

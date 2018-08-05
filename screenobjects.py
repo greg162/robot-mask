@@ -14,21 +14,26 @@ class Eye:
     self.centerPointY    = int(self.eyeWidth / 2)
     self.ballrect.center = [self.centerPointX, self.centerPointY]
     self.rotateX         = 0
-    self.rotateY         = 0 
+    self.rotateY         = 0
+    self.eyeAngle        = 10
 
   #This function is used to update the location of the eyes as the angle changes
-  def levelEyes(self, theta, game):
+  def setEyeAngle(self, angle):
+    self.eyeAngle = angle
+  
+  def levelEyes(self, game):
     d  = game.SCREEN_MIDPOINT_X - game.SCREEN_THIRD_X
     x0 = 0
     y0 = 0
-    theta_rad = pi/2 - radians(theta)
+    print self.eyeAngle
+    theta_rad = pi/2 - radians(self.eyeAngle)
     self.rotateY = int(x0 + d*cos(theta_rad))
     self.rotateX = int(d - int(y0 + d*sin(theta_rad)))
 
   #This function is used to update the location of the eye on the screen.
   def updateLocation(self, joystick, game):
 
-    self.levelEyes( 6, game )
+    self.levelEyes(game )
 
 
     #calulate the X position of an Eye
