@@ -42,17 +42,17 @@ class Eye:
     #Calculate position of eye in the deadzone
     if (rawXAxisValue >= (game.DEADZONE_LIMIT * -1) ) and (rawXAxisValue <= game.DEADZONE_LIMIT):
       if(self.leftEye):
-        self.ballrect.x = game.SCREEN_THIRD_X - self.centerPointX - self.rotateX
+        self.ballrect.x = game.SCREEN_THIRD_X - self.centerPointX + self.rotateX
       else:
-        self.ballrect.x = (game.SCREEN_WIDTH - game.SCREEN_THIRD_X) - self.centerPointX + self.rotateX
+        self.ballrect.x = (game.SCREEN_WIDTH - game.SCREEN_THIRD_X) - self.centerPointX - self.rotateX
     #Calculate the position of the eye when the joystick is outside the deadzone
     else:
       pixelDifference = rawXAxisValue * game.SCREEN_THIRD_X
 
       if(self.leftEye):
-        eyelocation_x   = game.SCREEN_THIRD_X + pixelDifference - self.centerPointX - self.rotateX
+        eyelocation_x   = game.SCREEN_THIRD_X + pixelDifference - self.centerPointX + self.rotateX
       else:
-        eyelocation_x = (game.SCREEN_WIDTH - game.SCREEN_THIRD_X) + pixelDifference - self.centerPointX + self.rotateX
+        eyelocation_x = (game.SCREEN_WIDTH - game.SCREEN_THIRD_X) + pixelDifference - self.centerPointX - self.rotateX
 
       self.ballrect.x = eyelocation_x
 

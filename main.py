@@ -72,9 +72,9 @@ while 1:
     if event.type == pygame.QUIT: sys.exit()
 
   #Update the location of the left and right eye
-  accel.get_Gxyz()
-  leftEye.eyeAngle  = accel.z
-  rightEye.eyeAngle = accel.z
+  accel.get_Gxyz_smooth()
+  leftEye.eyeAngle  = accel.smooth_x
+  rightEye.eyeAngle = accel.smooth_x
 
   leftEye.updateLocation(joystick, game)
   rightEye.updateLocation(joystick, game)

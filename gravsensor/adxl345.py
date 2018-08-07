@@ -56,13 +56,18 @@ class adxl345(i2c):
     ADXL345_RANGE_4_G        = 0x01 # +/-  4g
     ADXL345_RANGE_8_G        = 0x02 # +/-  8g
     ADXL345_RANGE_16_G       = 0x03 # +/- 16g
+    NO_OF_READINGS_AVG       = 10
 
 
     def __init__(self, busnum=-1, debug=False):
 
-        self.x = 0.00
-        self.y = 0.00
-        self.z = 0.00
+        self.x        = 0.00
+        self.y        = 0.00
+        self.z        = 0.00
+        self.smooth_x = 0.00
+        self.smooth_y = 0.00
+        self.smooth_z = 0.00
+        self.lastSensorReadings = []
 
         self.accel = i2c(self.ADXL345_ADDRESS, busnum, debug)
 
@@ -121,3 +126,27 @@ class adxl345(i2c):
         self.x /= 3.141592
         self.y /= 3.141592
         self.z /= 3.141592
+
+
+    def get_Gxyz_smooth(self):
+      self.get_Gxyz()
+      readings = [self.x, self.y, self.z]
+      noOfReadings = len(self.lastSensorReadings)
+      if(noOfReadings >= self.NO_OF_READINGS_AVG):
+          self.lastSensorReadings = self.lastSensorReadings[1:]
+      self.lastSensorReadings.append(readings)
+      print self.lastSensorReadings
+      
+      totalX = 0
+      totalY = 0
+      totalZ = 0
+      for oldReadings in self.lastSensorReadings:
+        totalX += oldReadings[0]
+        totalY += oldReadings[1]
+        totalZ += oldReadings[2]
+      
+      if noOfReadings > 0:
+        self.smooth_x = totalX / noOfReadings
+        self.smooth_y = totalY / noOfReadings
+        self.smooth_z = totalZ / noOfReadings
+    
