@@ -1,7 +1,7 @@
 Robot Mask
 =========
 
-<div class='gfyitem' data-id=AcclaimedEmbarrassedArabianhorse></div><p> <a href="https://gfycat.com/AcclaimedEmbarrassedArabianhorse">via Gfycat</a></p>
+<div class='gfyitem' data-id=AcclaimedEmbarrassedArabianhorse></div><p> <a href="https://gfycat.com/AcclaimedEmbarrassedArabianhorse">See what it looks like here</a></p>
 
 
 So, you want to dress up as a Robot for halloween? Here is the codebase for a robot mask. It has the following features:
