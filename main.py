@@ -4,6 +4,7 @@ from gravsensor.adxl345 import adxl345
 
 pygame.init()
 pygame.joystick.init()
+pygame.mouse.set_visible(0)
 
 game = game.Settings()
 
@@ -56,6 +57,7 @@ while 1:
   exitButton = joystick.get_button( 8 )
   if exitButton == 1:
     led.stop()
+    GPIO.cleanup()
     sys.exit()
     os.system('reboot')
 
@@ -73,8 +75,11 @@ while 1:
 
   #Update the location of the left and right eye
   accel.get_Gxyz_smooth()
-  leftEye.eyeAngle  = accel.smooth_x
-  rightEye.eyeAngle = accel.smooth_x
+  leftEye.eyeAngle  = accel.smooth_x / 2.5 #Found that rotation is too much, so max angle is 30 degrees.
+  rightEye.eyeAngle = accel.smooth_x / 2.5 
+
+  #leftEye.eyeAngle  = 0
+  #rightEye.eyeAngle = 0
 
   leftEye.updateLocation(joystick, game)
   rightEye.updateLocation(joystick, game)
