@@ -1,6 +1,8 @@
 Robot Mask
 =========
 
+<div style='position:relative;padding-bottom:54%'><iframe src='https://gfycat.com/ifr/AcclaimedEmbarrassedArabianhorse' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0' allowfullscreen></iframe></div>
+
 So, you want to dress up as a Robot for halloween? Here is the codebase for a robot mask. It has the following features:
 
 Features
